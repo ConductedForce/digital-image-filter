@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="program_design.txt">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="digital_image_filter.py" />
   </ItemGroup>
   <PropertyGroup>

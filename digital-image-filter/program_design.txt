@@ -1,0 +1,18 @@
+"""
+Procedure:
+
+Read images.
+Convert to usable format. (pixel format)
+hold images in array
+
+
+loop through rgb of images
+store rgb
+
+
+
+Repeat until all pixels have been read.
+Convert array to image.
+Save image.
+Done.
+"""
