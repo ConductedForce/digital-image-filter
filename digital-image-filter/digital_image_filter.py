@@ -20,7 +20,8 @@ def findMedian( k ):
 
 finalImage = Image.open('finalImage\\fwImage.png');
 newImage=finalImage.load()
-width, height = finalImage.size
+#width, height = finalImage.size
+width, height = (10000,10000)
 
 image_list = [] #array of images
 
@@ -28,18 +29,14 @@ for filename in glob.glob('sampleImages\*.png'):
     im=Image.open(filename)
     px=im.load()
     image_list.append(px)
-
-#may not actually be neccesary
-#if (width > height):
- #   temp = height
-  #  height = width
-   # width = temp
+    width = im.width if (im.width < width ) else width
+    height = im.height if (im.height < height) else height
 
 r = []
 g = []
 b = []
 red = green = blue = 0
-progress = 0
+#progress = 0
 
 for y in range(0,height):
     for x in range(0,width):
@@ -58,9 +55,9 @@ for y in range(0,height):
         newImage[x,y] = (findMedian(r), findMedian(g), findMedian(b));
         del r[:],g[:],b[:]
         red = green = blue = 0;    
-    progress = (int)(100 / height * y)
-    if ( progress % 5 == 0 ):
-        print ('Job: ', progress, '% complete'); 
+    #progress = (int)(100 / height * y)
+    #if ( progress % 5 == 0 ):
+        #print ('Job: ', progress, '% complete'); 
         
 finalImage.save('finalImage\\finalImage.png')
 print ("I'm done!");

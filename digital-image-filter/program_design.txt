@@ -21,3 +21,9 @@ Done.
 #px = im.load()
 #image_list[1].show()
 #print(len(image_list));
+
+#may not actually be neccesary
+#if (width > height):
+ #   temp = height
+  #  height = width
+   # width = temp
