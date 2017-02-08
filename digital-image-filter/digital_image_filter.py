@@ -5,25 +5,31 @@ Class: CST 205
 Purpose: to combine images into one image, removing unwanted stuff.
 """
 
-
-
 import PIL
 from PIL import Image
 import glob
-import statistics
+
+def findMedian( k ):
+    median = 0
+    sort = 0
+    sort = sorted(k)
+    median = (int)((len(k)-1)/2) + 1
+    if ( len(sort) <= 1 ):
+        return sort[0]
+    return sort[median]
+
+finalImage = Image.open('finalImage\\fwImage.png');
+newImage=finalImage.load()
+width, height = finalImage.size
 
 image_list = [] #array of images
+
 for filename in glob.glob('sampleImages\*.png'):
     im=Image.open(filename)
-    width, height = im.size
     px=im.load()
     image_list.append(px)
 
-#im = Image.open('sampleImages\one.png')
-#px = im.load()
-#image_list[1].show()
-#print(len(image_list));
-
+#may not actually be neccesary
 if (width > height):
     temp = height
     height = width
@@ -32,15 +38,19 @@ if (width > height):
 r = []
 g = []
 b = []
-newImage = []
+progress = 0
 for y in range(0,height):
     for x in range(0,width):
         for anImage in image_list:
-            red, green, blue = anImage[x,y]
+            red, green, blue = anImage[(x,y)]
             r.append(red)
             g.append(green)
             b.append(blue)
-        statistics.median(r)
+        newImage[x,y] = (findMedian(r), findMedian(g), findMedian(b));
+        del r[:],g[:],b[:]    
+    progress = (int)(100 / height * y)
+    if ( progress % 5 == 0 ):
+        print ('Job: ', progress, '% complete'); 
         
-
+finalImage.save('finalImage\\finalImage.png')
 print ("I'm done!");

@@ -5,14 +5,19 @@ Read images.
 Convert to usable format. (pixel format)
 hold images in array
 
-
 loop through rgb of images
 store rgb
-
+get median of r list,g list,b list
+store in new image
 
 
 Repeat until all pixels have been read.
-Convert array to image.
 Save image.
 Done.
 """
+
+#test code
+#im = Image.open('sampleImages\one.png')
+#px = im.load()
+#image_list[1].show()
+#print(len(image_list));
