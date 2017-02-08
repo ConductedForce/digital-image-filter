@@ -30,24 +30,34 @@ for filename in glob.glob('sampleImages\*.png'):
     image_list.append(px)
 
 #may not actually be neccesary
-if (width > height):
-    temp = height
-    height = width
-    width = temp
+#if (width > height):
+ #   temp = height
+  #  height = width
+   # width = temp
 
 r = []
 g = []
 b = []
+red = green = blue = 0
 progress = 0
+
 for y in range(0,height):
     for x in range(0,width):
         for anImage in image_list:
-            red, green, blue = anImage[(x,y)]
+            pixel = anImage[x,y]
+            if (type(pixel) is tuple):
+                if (len(pixel) > 3):
+                    red, green, blue, alpha = pixel
+                else:
+                    red, green, blue = pixel
+            if (type(pixel) is int):
+                red = green = blue = pixel
             r.append(red)
             g.append(green)
             b.append(blue)
         newImage[x,y] = (findMedian(r), findMedian(g), findMedian(b));
-        del r[:],g[:],b[:]    
+        del r[:],g[:],b[:]
+        red = green = blue = 0;    
     progress = (int)(100 / height * y)
     if ( progress % 5 == 0 ):
         print ('Job: ', progress, '% complete'); 
