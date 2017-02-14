@@ -37,6 +37,7 @@ g = []
 b = []
 red = green = blue = 0
 #progress = 0
+print ("Working on the Job...");
 
 for y in range(0,height):
     for x in range(0,width):
